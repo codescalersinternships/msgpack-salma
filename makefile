@@ -4,4 +4,4 @@ format:
 lint:
 	flake8 .
 test:
-	poetry run python tests/msgpack_test.py
+	python tests/msgpack_test.py
