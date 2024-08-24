@@ -8,7 +8,7 @@ class MsgPackSerializer:
     @staticmethod
     def _serialize_signed_int(value):
         if -127 <= value <= 127:
-            return bytes([INT8, value])
+            return bytes([INT8]) + struct.pack(">b", value)
         elif -32768 <= value <= 32767:
             return bytes([INT16]) + struct.pack(">h", value)
         elif -2147483648 <= value <= 2147483647:
@@ -21,9 +21,9 @@ class MsgPackSerializer:
     @staticmethod
     def _serialize_unsigned_int(value):
         if 0 <= value <= 255:
-            return bytes([UINT8, value])
+            return bytes([INT8]) + struct.pack(">B", value)
         elif 256 <= value <= 65535:
-            return bytes([UINT32]) + struct.pack(">H", value)
+            return bytes([UINT16]) + struct.pack(">H", value)
         elif 65536 <= value <= 4294967295:
             return bytes([UINT32]) + struct.pack(">I", value)
         elif 4294967296 <= value <= 18446744073709551615:

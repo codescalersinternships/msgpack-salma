@@ -98,6 +98,8 @@ class MsgPackDeserializer:
             return MsgPackDeserializer._deserialize_unsigned_int(data)
         elif type in [INT8, INT16, INT32, INT64]:
             return MsgPackDeserializer._deserialize_signed_int(data)
+        elif type in [FLOAT32, FLOAT64]:
+            return MsgPackDeserializer._deserialize_float(data)
         elif type in [FALSE, TRUE]:
             return MsgPackDeserializer._deserialize_boolean(data)
         elif type in [STR8, STR16, STR32]:
